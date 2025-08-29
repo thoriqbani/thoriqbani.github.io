@@ -1,136 +1,655 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./src/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://fontawesome.com/icons/js?f=brands&s=solid">
+    <title>Thoriq Bani - Backend Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0px);
             }
 
-            to {
-                opacity: 1;
+            50% {
+                transform: translateY(-20px);
             }
         }
 
         .fade-in {
-            animation: fadeIn 1s ease-in-out;
-            opacity: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
         }
 
-        .hide {
-            opacity: 0;
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-glow {
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
+            }
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, #f8f9ff 0%, #e8edff 100%);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .contact-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
         }
     </style>
 </head>
 
-<body class="font-sans h-max">
-    <section
-        class="bg-emerald-400 w-full h-20 fixed top-0 flex text-white px-10 py-6 font-semibold text-2xl shadow-md shadow-slate-400 z-10">
-        <header class="mx-auto flex gap-10">
-            <a href="#home">Home</a>
-            <a href="#skill">Skill</a>
-            <a href="#project">Project</a>
-            <a href="#contact">Contact</a>
-        </header>
-    </section>
-    <section id="home" class="hide max-w-[1000px] lg:flex p-10 lg:p-0 mx-auto h-max mt-[200px]">
-        <div class="mr-auto font-bold text-xl mt-10 max-w[500px] text-emerald-600">
-            Thoriq Bani
-            <p class="font-normal text-black mt-2">Halo, perkenalkan nama saya Mohammad Thoriq Bani Qintoro</p>
-            <p class="font-normal text-black">Saya seorang Backend Developer</p>
+<body class="bg-gray-50 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 nav-blur transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- <div class="text-2xl font-bold text-gradient"><img src="./img/saya.png" alt="" width="" class="rounded-full"></div> -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home"
+                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors font-medium">Home</a>
+                    <a href="#about"
+                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors font-medium">About</a>
+                    <a href="#skills"
+                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors font-medium">Skills</a>
+                    <a href="#projects"
+                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors font-medium">Projects</a>
+                    <a href="#contact"
+                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors font-medium">Contact</a>
+                </div>
+                <button class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-            <button
-                class="mt-4 font-semibold w-max bg-emerald-600 text-white px-4 h-10 rounded-full hover:bg-emerald-900 duration-100">Hubungi
-                Saya</button>
-            <div class="flex gap-4 mt-5 w-60">
-                <a href="https://www.facebook.com/thoriq.qintoro" target="_blank">
-                    <img src="./img/facebook.png" alt=""  class="w-7 h-max hover:w-10 duration-100">
-                </a>
-                <a href="https://www.instagram.com/thoriq_jrs/" target="_blank" rel="noopener noreferrer">
-                    <img src="./img/instagram.png" alt="" class="w-7 h-max hover:w-10 duration-100">
-                </a>
-                <a href="https://wa.me/6288991239424" target="_blank">
-                    <img src="./img/whatsapp.png" alt="" class="w-7 h-max hover:w-10 duration-100">
-                </a>
-            </div>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-300 opacity-20 rounded-full blur-3xl"></div>
         </div>
-        <div class="ml-auto flex mt-10 lg:mt-0">
-            <img src="./img/saya.png" alt="" class=" w-[300px]">
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16">
+            <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+                <div class="text-white fade-in">
+                    <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+                        Hi, I'm<br>
+                        <span class="text-yellow-300">Thoriq Bani</span>
+                    </h1>
+                    <p class="text-xl lg:text-2xl mb-8 text-gray-200 leading-relaxed">
+                        Backend Developer crafting scalable solutions with cutting-edge technology
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <button
+                            class="px-8 py-4 bg-white text-indigo-600 rounded-full font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 pulse-glow">
+                            Get In Touch
+                        </button>
+                        <a class="px-8 py-4 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition-all"
+                            href="#projects">
+                            View My Work
+                        </a>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="https://www.facebook.com/thoriq.qintoro" target="_blank"
+                            class="p-3 glass-effect rounded-full hover:bg-white hover:text-indigo-600 transition-all transform hover:scale-110">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/thoriq_jrs/" target="_blank"
+                            class="p-3 glass-effect rounded-full hover:bg-white hover:text-indigo-600 transition-all transform hover:scale-110">
+                            <svg class="w-6 h-6" fill="currentColor"
+                                 viewBox="0 0 16 16">
+                                <path
+                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/6288991239424" target="_blank"
+                            class="p-3 glass-effect rounded-full hover:bg-white hover:text-indigo-600 transition-all transform hover:scale-110">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.108" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative lg:block fade-in floating">
+                    <div class="w-80 h-80 lg:w-96 lg:h-96 mx-auto relative">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-pink-400 rounded-full blur-2xl opacity-50">
+                        </div>
+                        <div class="relative w-full h-full bg-white rounded-full p-4 glass-effect">
+                            <div
+                                class="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white text-8xl font-bold">
+                                <img src="./img/saya.png" alt="" width="325" class="rounded-full">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <h1 class="font-bold text-2xl text-emerald-600 max-w-[1000px] mx-auto mt-[200px]">Skill Saya</h1>
-    <section id="skill" class="hide max-w-[1000px] lg:flex p-10 lg:p-0 mx-auto h-max">
-        <div class=" font-bold text-xl mt-16 max-w-max flex gap-10 mx-auto">
-            <img src="./img/javascript.svg" alt="" class="w-[150px]">
-            <img src="./img/express-js.png" alt="" class="w-[150px] h-max">
-            <img src="./img/php.svg" alt="" class="w-[150px]">
-            <img src="./img/laravel.svg" alt="" class="w-[150px]">
-        </div>
-    </section>
-    <h1 class="font-bold text-2xl text-emerald-600 max-w-[1000px] mx-auto h-max mt-[100px]">Project Saya</h1>
-    <section id="project" class="hide max-w-[1000px] lg:flex p-10 lg:p-0 mx-auto h-max">
-        <div class=" font-bold text-xl mt-20 max-w-max flex gap-20 mx-auto ">
-            <div class="">
-                blog-project
-                <img src="./img/blog-project.png" alt="" class="w-[400px] h-max mt-2">
-            </div>
-            <div>
-                classhub
-                <img src="./img/classhub.png" alt="" class="w-[400px] h-max mt-2">
-            </div>
-        </div>
-    </section>
-    <h1 class="font-bold text-2xl text-emerald-600 max-w-[1000px] mx-auto h-max mt-[200px]">Kontak Saya</h1>
-    <section id="contact" class="hide w-max mx-auto h-max mt-[10px] p-10 flex text-2xl font-medium">
-        <form action="https://formspree.io/f/mblrolzp" method="post">
-            <div class="mt-5 w-full">
-                <labe; for="name">Name:</labe;>
-                <input type="text" id="name" name="full-name" required class="border-b-2 border-black">
-            </div>
-            <div class="mt-5 w-full">
-                <labe; for="email">Email:</labe;>
-                <input type="email" id="email" name="email" required class="border-b-2 border-black">
-            </div>
-            <div class="mt-5 w-full">
-                <labe; for="message">Subject:</labe;>
-                <textarea id="message" name="message" rows="4" required class="border-b-2 border-black"></textarea>
-            </div>
-            <div class="mt-5 w-full">
-                <labe; for="message">Message:</labe;>
-                <textarea id="message" name="message" rows="4" required class="border-b-2 border-black"></textarea>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">About Me</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    I'm Mohammad Thoriq Bani Qintoro, a passionate Backend Developer with expertise in building
+                    scalable, efficient, and secure server-side applications. I specialize in modern technologies and
+                    love solving complex problems.
+                </p>
             </div>
 
-            <input type="submit" value="Submit"
-                class="bg-emerald-600 hover:bg-emerald-800 w-max h-max px-6 py-2 rounded-full font-bold text-white mt-5">
-        </form>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl card-hover">
+                    <div class="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Fast Performance</h3>
+                    <p class="text-gray-600">Optimized code and efficient algorithms for lightning-fast applications.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-pink-100 p-8 rounded-2xl card-hover">
+                    <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Secure Solutions</h3>
+                    <p class="text-gray-600">Industry-standard security practices to protect your valuable data.</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-2xl card-hover">
+                    <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Scalable Architecture</h3>
+                    <p class="text-gray-600">Built to grow with your business needs and handle increasing loads.</p>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">My Skills</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Technologies and frameworks I use to build exceptional backend solutions
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-2xl card-hover skill-glow text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-yellow-100 rounded-xl flex items-center justify-center">
+                        <img src="./img/javascript.svg" alt="">
+                        <!-- <svg class="w-12 h-12 text-yellow-600" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/>
+                        </svg> -->
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">JavaScript</h3>
+                    <p class="text-sm text-gray-600 mt-2">Modern ES6+ & Node.js</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl card-hover skill-glow text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gray-100 rounded-xl flex items-center justify-center">
+                        <!-- <svg class="w-12 h-12 text-gray-800" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 18.588a1.529 1.529 0 01-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 01-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 011.9-.666l3.576 4.83 3.596-4.81a1.435 1.435 0 011.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 000 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.078 4.078 0 002.582-2.876c.207-.666.548-.78 1.174-.588a5.417 5.417 0 01-2.589 3.957c-2.612 1.524-7.027.309-8.523-2.637a6.257 6.257 0 01.043-5.006zm6.695-2.588c2.628-.22 4.007 1.627 4.181 4.24H1.176c-.068-1.792 1.154-3.652 2.89-4.24z"/>
+                        </svg> -->
+                        <img src="./img/express-js.png" alt="">
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Express.js</h3>
+                    <p class="text-sm text-gray-600 mt-2">RESTful APIs & Middleware</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl card-hover skill-glow text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-purple-300 rounded-xl flex items-center justify-center">
+                        <img src="./img/php.svg" alt="">
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">PHP</h3>
+                    <p class="text-sm text-gray-600 mt-2">Server-side Development</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl card-hover skill-glow text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-red-200 rounded-xl flex items-center justify-center">
+                        <img src="./img/laravel.svg" alt="">
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Laravel</h3>
+                    <p class="text-sm text-gray-600 mt-2">Elegant PHP Framework</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Featured Projects</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    A showcase of my recent work and technical achievements
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="project-card rounded-3xl overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-blue-400 to-purple-500 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-20"><img src="./img/blog-project.png" alt="">
+                        </div>
+                        <div class="absolute bottom-6 left-6 text-slate-900">
+                            <h3 class="text-2xl font-bold mb-2">Blog Project</h3>
+                            <p class="text-blue-500">Full-stack blogging platform</p>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-gray-600 mb-6">
+                            A modern blogging platform built with Node.js and Express, featuring user authentication,
+                            content management, and real-time commenting system.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">Node.js</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full">Express</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-sm rounded-full">MongoDB</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button
+                                class="px-6 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors">
+                                Live Demo
+                            </button>
+                            <button
+                                class="px-6 py-2 border border-gray-300 text-gray-700 rounded-full hover:bg-gray-50 transition-colors">
+                                View Code
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card rounded-3xl overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-green-400 to-blue-500 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-20"><img src="./img/classhub.png" alt=""></div>
+                        <div class="absolute bottom-6 left-6 text-slate-900">
+                            <h3 class="text-2xl font-bold mb-2">ClassHub</h3>
+                            <p class="text-green-500">Educational management system</p>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-gray-600 mb-6">
+                            A comprehensive classroom management system with features for assignment tracking, grade
+                            management, and student-teacher communication.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-red-100 text-red-700 text-sm rounded-full">Laravel</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">PHP</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-sm rounded-full">MySQL</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button
+                                class="px-6 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors">
+                                Live Demo
+                            </button>
+                            <button
+                                class="px-6 py-2 border border-gray-300 text-gray-700 rounded-full hover:bg-gray-50 transition-colors">
+                                View Code
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card rounded-3xl overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-blue-400 to-purple-500 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-20"><img src="./img/blog-project.png" alt="">
+                        </div>
+                        <div class="absolute bottom-6 left-6 text-slate-900">
+                            <h3 class="text-2xl font-bold mb-2">Blog Project</h3>
+                            <p class="text-blue-500">Full-stack blogging platform</p>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-gray-600 mb-6">
+                            A modern blogging platform built with Node.js and Express, featuring user authentication,
+                            content management, and real-time commenting system.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">Node.js</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full">Express</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-sm rounded-full">MongoDB</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button
+                                class="px-6 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors">
+                                Live Demo
+                            </button>
+                            <button
+                                class="px-6 py-2 border border-gray-300 text-gray-700 rounded-full hover:bg-gray-50 transition-colors">
+                                View Code
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 contact-bg relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-300 opacity-10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Let's Work Together</h2>
+                <p class="text-xl text-purple-200 max-w-2xl mx-auto">
+                    Ready to bring your project to life? I'm here to help you build something amazing.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                    <div class="text-white">
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-4">Get in Touch</h3>
+                                <p class="text-purple-200 leading-relaxed">
+                                    I'm always excited to discuss new opportunities and interesting projects.
+                                    Whether you need a consultation or want to start a project, let's connect!
+                                </p>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4">
+                                    <div
+                                        class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">Email</p>
+                                        <p class="text-purple-200">thoriq.bani.qintoro@gmail.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center space-x-4">
+                                    <div
+                                        class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">Phone</p>
+                                        <p class="text-purple-200">+62 889-9123-9424</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center space-x-4">
+                                    <div
+                                        class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">Location</p>
+                                        <p class="text-purple-200">Sumenep, East Java, Indonesia</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-effect rounded-2xl p-8">
+                        <form action="https://formspree.io/f/mblrolzp" method="post" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-white mb-2">Full
+                                        Name</label>
+                                    <input type="text" id="name" name="full-name" required
+                                        class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                                        placeholder="Your full name">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-white mb-2">Email
+                                        Address</label>
+                                    <input type="email" id="email" name="email" required
+                                        class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                                        placeholder="your@email.com">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-white mb-2">Subject</label>
+                                <input type="text" id="subject" name="subject" required
+                                    class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                                    placeholder="Project discussion">
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-white mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" required
+                                    class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 resize-none"
+                                    placeholder="Tell me about your project..."></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-white text-indigo-600 font-semibold py-4 px-6 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 pulse-glow">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold text-gradient mb-2">Thoriq Bani</h3>
+                    <p class="text-gray-400">Backend Developer & Problem Solver</p>
+                </div>
+
+                <div class="flex space-x-6">
+                    <a href="https://www.facebook.com/thoriq.qintoro" target="_blank"
+                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/thoriq_jrs/" target="_blank"
+                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.624 5.367 11.99 11.988 11.99s11.987-5.366 11.987-11.99C24.004 5.367 18.641.001 12.017.001zm5.568 16.595c-.44.44-1.022.66-1.744.66H8.16c-.722 0-1.304-.22-1.744-.66-.44-.44-.66-1.022-.66-1.744V9.149c0-.722.22-1.304.66-1.744.44-.44 1.022-.66 1.744-.66h7.681c.722 0 1.304.22 1.744.66.44.44.66 1.022.66 1.744v5.702c0 .722-.22 1.304-.66 1.744z" />
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/6288991239424" target="_blank"
+                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.108" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2025 Thoriq Bani. All rights reserved. Built with passion and modern technology.
+                </p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section.hide');
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                        entry.target.classList.remove('hide');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            sections.forEach(section => {
-                observer.observe(section);
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
-    </script>
 
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('section, .card-hover').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission enhancement
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            });
+        }
+
+        // Add subtle parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('#home');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
 </body>
 
 </html>
